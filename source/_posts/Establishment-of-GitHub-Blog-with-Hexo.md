@@ -1,13 +1,14 @@
 ---
 title: GitHub + Hexo 博客搭建与更新维护
 date: 2017-10-02 23:14:51
+categories: "Hexo教程"
 tags: 
     - "Hexo"
 ---
 
 ## 1. 前言
 本文介绍如何用Hexo框架在GitHub上搭建个人独立博客，以及后期的维护和优化工作，包括来自[GitHub Pages + Hexo搭建博客](http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/)的部分内容和自己踩到的一些坑。GitHub提供了一个用于建立个人页面的托管空间，而Hexo是一个简介快速的博客框架。博客建立的主要思路是，用Markdown语言进行写作，得到.md文件；然后用Hexo框架把.md文件编译成浏览器可以识别的.html、.js、.css等文件；最后通过Hexo发布到指定的GitHub页面托管库中。本文以macOS为操作系统，一些命令可能与Windows有所不同。
-
+<!-- more -->
 预备知识：
 * [GitHub](https://github.com)
 * [Hexo](https://hexo.io/zh-cn/index.html)
