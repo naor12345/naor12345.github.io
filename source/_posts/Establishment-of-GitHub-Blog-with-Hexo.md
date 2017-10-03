@@ -1,5 +1,5 @@
 ---
-title: GitHub + Hexo 博客搭建与更新维护
+title: 【Hexo01】GitHub + Hexo 博客搭建
 date: 2017-10-02 23:14:51
 categories: "Hexo教程"
 tags: 
@@ -109,66 +109,9 @@ $ hexo deploy
 ### 3.4 日常管理
 每当要对博客进行修改或新建文章时，首先确保本地的博客目录在`hexo`分支上，修改结束后提交并推送。然后再执行以下命令
 ```bash
-$ hexo clean # 清除上次生成时旧的网页文件
-$ npm install
-$ npm install hexo-deployer-git --save
-$ hexo generate -d
+$ hexo clean    # 清除上次生成时旧的网页文件
+$ hexo g -d     # 生成网页并发布
 ```
 
-## 4 优化与完善
-Hexo博客框架目前已经衍生出很多主题和插件，可以任意进行修改更换。也可以直接对框架中的.css文件进行修改来更改样式。
-### 4.1 更换主题
-初始化网站使用的默认主题是`landscape`。如果对默认主题不满意，可以下载hexo主题进行更换。本文以更换[NexT](http://theme-next.iissnan.com/)主题为例进行说明。
-
-Hexo中有两份主要的配置文件，文件名都是`_config.yml`，其中一份位于博客根目录下，包含博客站点本身的配置；另一份位于主题目录下(`/themes/<theme_name>/`)，由主题作者提供，用于配置主题香瓜你的选项。为了描述方便，在以下说明中，前者称为`站点配置文件`，后者称为`主题配置文件`。
-
-#### 4.1.1 安装NexT
-确保在`hexo`分支上，命令行到博客目录，使用`git`命令：
-```bash
-$ git clone https://github.com/iissnan/hexo-theme-next themes/next
-```
-操作完成后，将看到新目录`/themes/next/`，这里面就是NexT主题文件。由于此目录是通过git获得，所以其中包含了一个`.git`文件夹，请将其删除。这个文件夹将导致博客目录向`hexo`分支提交更改失败。
-
-#### 4.1.2 启用主题并进行设定
-打开站点配置文件，找到`theme`字段，将值更改为`next`，即可启用主题。同时，为了统一风格，定位到`language`字段，把语言更改为简体中文：
-```yaml
-language: zh-Hans
-```
-
-在NexT主题中，包含若干个Scheme。Scheme是NexT提供的一种特性，借助于Scheme，NexT可以提供多种不同的外观。同时，几乎所有的配置都可以在Scheme之间共用。打开主题配置文件，定位到`scheme`字段，启用`Gemini`样式：
-```yaml
-# Schemes
-#scheme: Muse
-#scheme: Mist
-#scheme: Pisces
-scheme: Gemini
-```
-
-### 4.2 设置菜单与新建页面
-#### 4.2.1 设置菜单
-菜单处默认只显示`home`和`archives`两项，除此之外，hexo包含`about`、`categories`和`tags`等其他菜单项。开启这些菜单项需要编辑主题配置文件，定位到`menu`，将需要开启的菜单项前面的注释去掉：
-```yaml
-menu:
-  home: / || home
-  about: /about/ || user
-  tags: /tags/ || tags
-  categories: /categories/ || th
-  archives: /archives/ || archive
-  #schedule: /schedule/ || calendar
-  #sitemap: /sitemap.xml || sitemap
-  #commonweal: /404/ || heartbeat
-```
-
-#### 4.2.2 新建页面
-在hexo中，只有`home`和`archives`的页面是自动生成的，上文新开启的`about`、`categories`和`tags`菜单项需要手动新建跳转过去的页面，否则打开会显示404。
-
-创建页面可以使用以下命令：
-```bash
-$ hexo new page categories # 新建categories页面
-$ hexo new page tags       # 新建tags页面
-$ hexo new page about      # 新建about页面
-```
-这样，可以生成对应的页面。
-
-## 5 结语
-先写到这里，本文将持续更新，把建立和写作的过程记录下来。
+## 4 结语
+至此，GitHub + Hexo博客的搭建工作就完成了。下一篇文章将介绍一些博客的完善与优化工作。
