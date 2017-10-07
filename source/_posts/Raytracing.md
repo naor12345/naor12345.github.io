@@ -6,7 +6,7 @@ tags:
     - "RayTracing"
 ---
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 ## 1. 前言
 本文介绍的是一个用光线追踪算法实现全局光照的代码。源代码已托管到[GitHub](https://github.com/naor12345/RayTracing)中。本程序参考了[Kevin Beason](http://kevinbeason.com/)的[smallpt项目](http://www.kevinbeason.com/smallpt/)，在此基础上增加了其他几何体（smallpt只有球体）。程序运行效果如图所示。
@@ -175,7 +175,7 @@ public:
     Hexahedron(Vec p1, Vec p2, Vec n, Vec p);
 };
 ```
-然而，为了在空间中确定一个长方体，不能通过输入6个面来确定，这样各个变量之间的耦合性太高。`Hexahedron`的构造函数的输入参数为三个点和一个向量。其中，$p1$和$p2$是正方体底面矩形的对角两个顶点，设$p3$、$p4$是另外对角的两个顶点，矩形中心为$o$。$\vec{n}$是从$o$指向$p3$或$p4$的单位向量。这样，底面就可以被唯一确定。$p$则用于确定长方体的另一面，$p$到这个底面的距离即是长方体的高。
+然而，为了在空间中确定一个长方体，不能通过输入6个面来确定，这样各个变量之间的耦合性太高。`Hexahedron`的构造函数的输入参数为三个点和一个向量。其中，\\(p1\\)和\\(p2\\)是正方体底面矩形的对角两个顶点，设\\(p3\\)、\\(p4\\)是另外对角的两个顶点，矩形中心为\\(o\\)。\\(\vec{n}\\)是从\\(o\\)指向\\(p3\\)或\\(p4\\)的单位向量。这样，底面就可以被唯一确定。\\(p\\)则用于确定长方体的另一面，\\(p\\)到这个底面的距离即是长方体的高。
 
 ### 3.3 辅助数据结构
 #### 3.3.1 `IntersectResult`结构体
@@ -215,7 +215,7 @@ private:
 
 $$\vec{p} = \vec{o}+t\vec{d}$$
 
-其中$\vec{o}$表示光线原点，$\vec{d}$表示光照方向的单位向量，$t$表示光照距离，$p$表示$t$距离之后的光点。
+其中\\(\vec{o}\\)表示光线原点，\\(\vec{d}\\)表示光照方向的单位向量，\\(t\\)表示光照距离，\\(p\\)表示\\(t\\)距离之后的光点。
 
 #### 3.4.1 平面与球
 平面与球的光线物理计算相对简单。最重要的是法向量方向不要搞错。

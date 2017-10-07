@@ -6,7 +6,7 @@ tags:
     - "Hexo"
 ---
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 ## 1. 前言
 本文讲述一些文章中其他要素的搭建，比如插入图片、插入数学公式、统计访问量、加入评论系统等等。本文的参考资料有：
@@ -43,13 +43,13 @@ tags:
 ### 3.3 使用MathJax引擎
 在Markdown中使用MathJax引擎需要在正文之前插入以下代码：
 ```html
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 ```
 
-然后，再使用Tex写公式。`$$公式$$`表示行间公式，`$公式$`表示行内公式。示例如下：
+然后，再使用Tex写公式。`$$公式$$`表示行间公式，`\\(公式\\)`表示行内公式。示例如下：
 
 行间公式：
 
 $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 
-行内公式：$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$
+行内公式：\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)
