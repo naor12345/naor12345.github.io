@@ -1,5 +1,5 @@
 ---
-title: 【Hexo01】GitHub + Hexo 博客搭建
+title: GitHub + Hexo 博客搭建（一）
 date: 2017-10-02 23:14:51
 categories: "Hexo教程"
 tags: 

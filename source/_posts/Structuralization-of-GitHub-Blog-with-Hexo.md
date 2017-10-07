@@ -1,18 +1,18 @@
 ---
-title: 【Hexo02】GitHub + Hexo 博客完善与优化
+title: GitHub + Hexo 博客搭建（二）
 date: 2017-10-03 14:08:21
 categories: "Hexo教程"
 tags: 
     - "Hexo"
 ---
 
-## 1 前言
-在上一篇文章{% post_link Establishment-of-GitHub-Blog-with-Hexo 【Hexo01】GitHub + Hexo 博客搭建 %}中已经讲解了如何对GitHub + Hexo博客的初始化建立，这片文章将介绍一些博客完善与优化的方法。
+## 1. 前言
+在上一篇文章{% post_link Establishment-of-GitHub-Blog-with-Hexo GitHub + Hexo 博客搭建（一） %}中已经讲解了如何对GitHub + Hexo博客的初始化建立，这片文章将介绍一些博客完善与优化的方法。
 
 <!-- more -->
 
 
-## 2 Hexo主题设置
+## 2. Hexo主题设置
 Hexo博客框架目前已经衍生出很多主题和插件，可以任意进行修改更换。也可以直接对框架中的.css文件进行修改来更改样式。初始化网站使用的默认主题是`landscape`。如果对默认主题不满意，可以下载hexo主题进行更换。本文以更换[NexT](http://theme-next.iissnan.com/)主题为例进行说明。
 
 Hexo中有两份主要的配置文件，文件名都是`_config.yml`，其中一份位于博客根目录下，包含博客站点本身的配置；另一份位于主题目录下(`/themes/<theme_name>/`)，由主题作者提供，用于配置主题香瓜你的选项。为了描述方便，在以下说明中，前者称为`站点配置文件`，后者称为`主题配置文件`。
@@ -53,7 +53,7 @@ menu:
   #commonweal: /404/ || heartbeat
 ```
 
-## 3 页面设置
+## 3. 页面设置
 ### 3.1 新建页面
 在hexo中，只有`home`和`archives`的页面是自动生成的，上文新开启的`about`、`categories`和`tags`菜单项需要手动新建跳转过去的页面，否则打开会显示404。
 
@@ -100,6 +100,6 @@ tags:
 ```
 即可。这段代码不符合Markdown语法，所以Markdown编辑器无法解析，但是通过`hexo generate`生成后可以很好地实现链接跳转的功能。
 
-## 4 结语
+## 4. 结语
 至此，本文介绍了一些比较基本的博客完善方法，可以说是一些小trick，当作经验记录下来。本系列文章将持续记录博客搭建的过程。
 
