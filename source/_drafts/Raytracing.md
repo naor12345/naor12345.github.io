@@ -9,6 +9,7 @@ tags:
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 ## 1. 前言
+
 本文介绍的是一个用光线追踪算法实现全局光照的代码。源代码已托管到[GitHub](https://github.com/naor12345/RayTracing)中。本程序参考了[Kevin Beason](http://kevinbeason.com/)的[smallpt项目](http://www.kevinbeason.com/smallpt/)，在此基础上增加了其他几何体（smallpt只有球体）。程序运行效果如图所示。
 <img src="https://github.com/naor12345/RayTracing/blob/master/image.JPG?raw=true" width = "400" height = "300" alt="运行效果" align=center />
 
