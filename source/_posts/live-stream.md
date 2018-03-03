@@ -18,7 +18,9 @@ mathjax: true
 #### 1.1.1 系统层次
 Android 系统是自由及开放源代码的操作系统，基于 Linux 内核开发完成，主要用于移动设备，如智能手机和平板电脑。Android 系统的层次图如图 2-1 所示，其软件层次结构自上而下分为5层。包括应用程序层、应用程序框架层、核心类库层、硬件抽象层和Linux底层。
 
-![Android系统层次](live-stream/android.png)
+<center><img src="live-stream/android.png" width="50%" height="50%"></center>
+
+<center>Android系统层次</center>
 
 应用程序和应用程序框架是 Java 语言开发的程序，核心类库是 C/C++语言开发的函数库，硬件抽象层和Linux内核是与硬件相关底层模块。由于Android系统是基于Linux改装而成，所以其具备 Linux的一些系统特性和功能。Android支持通过C语言访问系统底层的驱动和接口，这也为硬件编码提供了框架前提。Android SDK使用Java语言进行开发，使得应用程序的UI和空间是基于Java的，这保证了应用程序的跨平台特性。即一个应用程序可以在几乎所有相同版本的Android系统上运行。
 
@@ -32,7 +34,9 @@ Java是一种面向对象的程序设计语言，其编写的应用程序可以�
 
 为了在计算机网络中传输信息而约定的规则称为网络通信协议。网络通信协议分为七层，自下而上依次为:物理层、数据链路层、网络层、传输层、会话层、表示层和应用层。根据不同网络连接所面向服务类型的不同，可分为面相连接的服务和面向无连接的服务。根据通信系统的实际要求和物理连接，可以在协议栈的数据链路层或传输层实现这些方法。传输层中的UDP(用户数据报协议)是面向无连接的网络协议，TCP(传输控制协议)是面向连接的传输协议。
 
-![TCP/UPD网络架构示意图](live-stream/net.png)
+<center><img src="live-stream/net.png" width="50%" height="50%"></center>
+
+<center>TCP/UPD网络架构示意图</center>
 
 #### 1.2.1 TCP(传输控制协议)
 TCP协议是面向连接的传输协议。所谓面向连接，是基于电话系统模型的。是指在发送任何数据之前，要求先建立会话连接，然后才可以传输数据，传输完成后需要释放链接。这种传输方式一般被称为“可靠”的网络业务，它可以保证数据以与发送时相同的顺序到达，但会产生相对较多的网络开销，相应地也会增加延时。
@@ -69,14 +73,18 @@ FFmpeg项目包含以下模块组成:
 * libpostproc: 对于视频做前期处理的函数库
 * libswscale: 对于影像做缩放的函数库
 
-![主要结构体之间的对应关系](live-stream/ffmpegmain.png)
+<center><img src="live-stream/ffmpegmain.png" width="70%"></center>
+
+<center>主要结构体之间的对应关系</center>
 
 ### 1.5 JNI
 Android系统采用Java语言开发，而调用FFmpeg的程序模块需要用C语言编写，若想在Android手机上实现FFmpeg的功能，需要解决的问题是如何实现Java语言和C/C++语言的通信。JNI技术和Android NDK可以解决这个问题。
 
 JNI是Java Native Interface的缩写，中文名是Java本地接口。它提供了若干API实现了Java和其他语言(主要是C/C++)的通信。Java对其他语言的调用是用动态链接库实现的。动态链接库在Windows系统上的扩展名是DLL，在 Linux系统上是SO。通过把C/C++语言编写的模块编译成扩展名为SO的动态链接库，再通过Java本地方法调用库中的相关函数，即可实现两种语言的互通。
 
-![JNI](live-stream/jni.png)
+<center><img src="live-stream/jni.png" width="70%"></center>
+
+<center>JNI</center>
 
 JNI技术作为Java的一个标准，主要目的是:
 * 应用程序需要调用系统相关的功能，然而Java不支持或难以实现
@@ -87,7 +95,9 @@ JNI技术作为Java的一个标准，主要目的是:
 ### 2.1 直播应用系统设计
 使用Android API编码和FFmpeg实现。
 
-![使用 Android API编码和FFmpeg实现的直播架构](live-stream/system.png)
+<center><img src="live-stream/system.png" width="70%"></center>
+
+<center>使用 Android API编码和FFmpeg实现的直播架构</center>
 
 此架构的采集和编码均用Android API实现，混流和发送通过FFmpeg实现。MediaCodec是Android的编解码器类，可以结合手机硬件特点，调用硬件加速功能。
 
@@ -109,12 +119,16 @@ JNI层中的数据通道用C++语言标准库(STL)中的queue实现。queue队�
 ### 2.3 编码模块
 音视频的编解码通过Android的MediaCodec类完成。根据Android开发文档，MediaCodec类可调用底层资源完成媒体编解码。MediaCodec即可以执行编码任务，也可以执行解码任务。每个实例化的Codec都有一些输入缓存和输出缓存，当输入端有待编码数据要传入时，可通过queueInputBuffer(int, int, int, long, int)方法将数据推入输入缓存当中。Codec完成编码后，将通过dequeueOutputBuffer(MediaCodec.BufferInfo, long)方法将编码后数据推入输出缓存。接收端从输出缓冲中读出数据后，该缓存需要通过 releaseOutputBuffer(int, boolean)方法进行释放。
 
-![MediaCodec示意图](live-stream/mediacodec.png)
+<center><img src="live-stream/mediacodec.png" width="70%"></center>
+
+<center>MediaCodec示意图</center>
 
 ### 2.3 JNI调用
 Android API使用Java语言开发，FFmpeg使用 C/C++开发。为实现Android对FFmpeg模块的调用，需要JNI调用技术来实现。
 
-![JNI 调用结构图](live-stream/jniframe.png)
+<center><img src="live-stream/jniframe.png" width="50%"></center>
+
+<center>JNI 调用结构图</center>
 
 由于Android系统基于Linux开发，所以系统底层均使用C/C++实现。Android 应用程序运行在Java虚拟机上。所以当应用通过Android API与系统底层进行交互时，API函数首先访问C/C++实现的系统库，根据库中的一些函数执行相关功能。与此架构类似，本系统将FFmpeg源码和混流传输模块的C/C++代码编译成动态链接库，通过应用程序通过 JNI 接口函数来调用这些底层库函数，实现两种语言交互的特点。
 
@@ -131,7 +145,9 @@ Android API使用Java语言开发，FFmpeg使用 C/C++开发。为实现Android�
 
 在Java层中，程序将实现两个定长的阻塞队列，作为公有的静态全局变量，作为音视频采集到传输的数据通道。阻塞队列为Java本身自有的数据结构，这里使用ArrayBlockingQueue来实现。ArrayBlockingQueue是基于数组实现的固定长度阻塞队列。在JNI层中，程序将通过C语言标准库实现两个queue队列，作为音视频编码后结果进行混流的数据通道。
 
-![MediaCodec示意图](mediacodec.png)
+<center><img src="live-stream/mediacodec.png" width="50%"></center>
+
+<center>MediaCodec示意图</center>
 
 程序从上之下分为Android API、JNI和FFmpeg三个部分。Android API层实现采集和编码，使用Java语言实现;Fmpeg层实现混流和发送，使用C/C++实现;JNI层用于实现移动终端直播编转码技术研究顶层对底层的调用和不同语言间的通信。
 
@@ -144,7 +160,9 @@ Android API使用Java语言开发，FFmpeg使用 C/C++开发。为实现Android�
 
 Camera类是Android系统中用于控制摄像头的API，通过设置参数，可以控制摄像头完成采集、拍照、预览等操作。为了控制摄像头进行数据采集，首先，需要实例化一个Camera类的对象。调用open()方法打开摄像头。然后设置摄像头参数，包括帧率、画面大小、码率。接着设置预览控件，即把摄像头与TextureView绑定起来，使得摄像头的影像实时显示在TextureView当中。
 
-![视频采集模块逻辑框图](camera.png)
+<center><img src="live-stream/camera.png" width="50%"></center>
+
+<center>视频采集模块逻辑框图</center>
 
 为了获取采集到的每一帧信息，需要注册回调函数，使该函数在每次Camera预览帧可用时执行，并返回采集到的数据。采集到的YUV格式数据将通过数据通道传递给后续的编码模块。
 
@@ -156,14 +174,20 @@ Camera类是Android系统中用于控制摄像头的API，通过设置参数，�
 #### 3.2.2 编码模块
 编码模块中的编码器通过MediaCodec类实现。输入和输出数据通过MediaCodec自身的缓存完成数据传递。在编码器输出时，首先会输出一个标志位，用于指示当前输出缓存的数据类型，包括配置信息、关键帧、结束位。配置信息不含音视频数据，只包含媒体的一些元数据比如编码格式、时间戳等信息。关键帧常用于编码视频时，表示当前输出缓存为I帧。结束位用于输出到文件系统时的数据回写，在直播中不需要。
 
-![编码器运行结构](live-stream/encoder.png)
+<center><img src="live-stream/encoder.png" width="50%"></center>
+
+<center>编码器运行结构</center>
 
 ##### 3.2.2.1 音频编码
 音频采集模块输出的音频原始格式为PCM格式，音频编码器将对其压缩成AAC格式。在编码开始前，需要设置编码格式、采样率、比特率和帧率。其中编码格式为“audio/mp4a-latm”，采样率和比特率与音频采集模块一致。
 
-![ADTS 音频格式图](live-stream/ADTS.png)
+<center><img src="live-stream/ADTS.png" width="80%"></center>
 
-![ADTS Header位](live-stream/ADTSbit.png)
+<center>ADTS 音频格式图</center>
+
+<center><img src="live-stream/ADTSbit.png" width="80%"></center>
+
+<center>ADTS Header位</center>
 
 输入数据为音频编码模块采集到的数据，通过阻塞队列传入。经过MediaCodec编码器编码后得到AAC格式的ES裸流。这种裸流只包含音频数据，不包含采样率、编码格式等配置信息，所以无法播放，保存成本地文件也无法打开。为此，需要把此AAC码流封装成ADTS流。ADTS流全称为(Audio Data Transport Stream)，是AAC流的一种传输格式，体现为在AAC的ES流的每帧之前添加7个字节的Header。ADTS头中包含此音频的采样率、声道数和帧长度等信息。
 
@@ -196,7 +220,9 @@ H.264编码标准包含 I 帧、P 帧与 B 帧。其中 I 帧是关键帧，保�
 
 NV21和NV12属于YUV420sp格式，是一种two-plane模式，即Y和UV分为两个Plane，但是UV(CbCr)为交错存储，而不是分为三个plane。
 
-![NV21 格式与 NV12 格式](live-stream/NV21.png)
+<center><img src="live-stream/NV21.png" width="60%"></center>
+
+<center>NV21 格式与 NV12 格式</center>
 
 所以，将NV21转换为NV12格式，只需要按位将前面Y部分直接复制下来，后面 VU 分量进行错位复制，此处用三个 for 循环实现。
 
@@ -207,13 +233,17 @@ JNI接口函数在Java层中进行声明，在C/C++层中进行实现。本系�
 
 编码数据从Java层传入到C/C++层，必须要经过JNI。而且由于两种语言不同，其对应的数据类型也要发生变化。MediaCodec编码完的数据都以字节数组(byte[])的格式进行储存，FFmpeg中音视频信息要以无符号8位整型数组来表示(uint8_t[size])，中间格式转换使用JNI来完成。
 
-![JNI 转换数据类型过程](live-stream/jnitype.png)
+<center><img src="live-stream/jnitype.png" width="40%"></center>
+
+<center>JNI 转换数据类型过程</center>
 
 在JNI层，JNI运行环境会首先将字节数组以jbyteArray的形式进行储存，并可以转化成一个jbyte指针和一个jsize类型。jbyte指针指向此数组的内存空间，jsize表示此段内存空间的大小。jbyte类型可以强制转换为uint8_t类型，jsize也可以强制转换成int类型。至此，一个Java层的字节数组转化成了C/C++层中指向此段内存首地址的指针和表示此内存空间长度的整数。
 
 为传递数据，在C/C++层定义一个C++标准库当中的queue实例，元素类型为uint8_t。当有数据传入时，把指针指向的内存空间所有数据都进行入队操作，等待之后FFmpeg的处理。
 
-![JNI 层的数据传递原理](live-stream/jniqueue.png)
+<center><img src="live-stream/jniqueue.png" width="70%"></center>
+
+<center>JNI 层的数据传递原理</center>
 
 #### 3.2.4 FFmpeg 层
 ##### 3.2.4.1 FFmpeg 的编译与移植
@@ -222,20 +252,28 @@ JNI接口函数在Java层中进行声明，在C/C++层中进行实现。本系�
 ##### 3.2.4.2 FFmpeg 的工作模式
 FFmpeg作为音视频处理工具，一般是面向文件进行工作，尤其是在输入端。这种模式是FFmpeg最常见的工作模式，配置较为简单。只需要定义文件路径并用avformat_open_input()函数打开，即可按文件路径把文件进行解析，绑定给AVFormatContext实体并开始读取。
 
-![FFmpeg 面向文件的工作模式](live-stream/ffmpegfile.png)
+<center><img src="live-stream/ffmpegfile.png" width="30%"></center>
+
+<center>FFmpeg 面向文件的工作模式</center>
 
 然而，本直播系统是面向实时流处理的，不存在文件路径。所以不能用面向文件的工作模式，而应该是面向内存的工作模式。
 
-![FFmpeg 面向内存的工作模式](live-stream/ffmpegmemo.png)
+<center><img src="live-stream/ffmpegmemo.png" width="30%"></center>
+
+<center>FFmpeg 面向内存的工作模式</center>
 
 由于不从文件中获取信息，所以此模式需要定义缓存并注册回调函数。回调函数的原型是int read_buffer(void *opaque, uint8_t *buf, int buf_size)。第一个参数opaque一般情况下不使用，*buf和buf_size分别表示缓存地址和缓存长度。每当程序需要读取数据时将执行回调函数，回调函数将从队列中取出buf_size长度的元素，并把此内存空间的数据赋值给buf指针所指向的内存空间。此时文件路径将被忽略，程序将从回调函数中获取数据。
 
-![FFmpeg 回调函数](live-stream/ffmpegcallback.png)
+<center><img src="live-stream/ffmpegcallback.png" width="60%"></center>
+
+<center>FFmpeg 回调函数</center>
 
 ##### 3.2.4.3 混流与发送模块流程设计
 经过之前的数据处理，从音频编码器输出加装了ADTS头的AAC音频流，从视频编码器输出H.264裸流，为便于音视频传输，下面将两路流混流成TS格式。
 
-![音视频混流过程图](live-stream/mix.png)
+<center><img src="live-stream/mix.png" width="70%"></center>
+
+<center>音视频混流过程图</center>
 
 混流模块的输入数据为Android应用层编码器输出的音视频裸流，传入方式从回调函数中获得。新建输出文件，文件路径为udp协议的目标ip地址和端口号。设置新建文件格式为mpegts，并内建两路流，分别将输入的音视频流复制进来。然后，通过计算时间戳、比较时间戳和延时发送等操作，完成混流与发送功能，下面具体叙述。
 
@@ -267,21 +305,29 @@ $$
 * 降低延时
 FFmpeg 混流发送模块初始化时要读取较多数据用于分析格式等初始化等操作。这将导 致较大延时，下面具体说明。
 
-![FFmpeg 工作流程(未开始混流)](live-stream/mix1.png)
+<center><img src="live-stream/mix1.png" width="50%"></center>
+
+<center>FFmpeg 工作流程(未开始混流)</center>
 
 此时 FFmpeg 混流模块还未开始工作，编码器编码数据全部在队列里。
 
-![FFmpeg 工作流程(初始化)](live-stream/mix2.png)
+<center><img src="live-stream/mix2.png" width="50%"></center>
+
+<center>FFmpeg 工作流程(初始化)</center>
 
 当 FFmpeg 混流模块开始工作时，首先要进行初始化相关操作，所以会在很短时间内从队列中读取很多数据。
 
-![FFmpeg 工作流程(队头部分元素舍弃)](live-stream/mix3.png)
+<center><img src="live-stream/mix3.png" width="60%"></center>
+
+<center>FFmpeg 工作流程(队头部分元素舍弃)</center>
 
 当初始化结束后，FFmpeg 将向外发送ts数据包，但它要先发送初始化时读入的数据。由于初始化时读入数据较多，此时FFmpeg模块不需要从队列内拿取数据，然而编码模块仍在向队列内输入数据。这将导致队列长度变长，前后整体延时偏大。
 
 为降低延时，这里将舍弃一部分队列数据。将队首部分较多积累的元素舍弃，以达到减少延时的目的。
 
-![FFmpeg 工作流程(进入稳定状态)](live-stream/mix4.png)
+<center><img src="live-stream/mix4.png" width="60%"></center>
+
+<center>FFmpeg 工作流程(进入稳定状态)</center>
 
 当FFmpeg模块将初始化时读入的大部分数据发送出去后，它将需要从队列中读取数据。由于队列中队首部分元素被舍弃，延时将降低。FFmepg初始化工作完成，内部数据长度保持相对稳定。这种方法体现为直播开始的几秒钟视频将向前突跳几秒，之后一直保持稳定，此突跳减小了延时。
 
@@ -290,7 +336,9 @@ FFmpeg 混流发送模块初始化时要读取较多数据用于分析格式等�
 ### 4.1 编码测试
 编码测试通过把音视频流以文件的形式写入手机SD卡内，然后通过一些软件对其进行解析。
 
-![编码测试原理图](live-stream/encodetest.png)
+<center><img src="live-stream/encodetest.png" width="50%"></center>
+
+<center>编码测试原理图</center>
 
 #### 4.1.1 H.264文件分析
 将 Android 编码的 H.264 裸流以文件形式保存到手机 SD 卡内。
@@ -305,20 +353,26 @@ FFmpeg 混流发送模块初始化时要读取较多数据用于分析格式等�
 
 用Eyecard StreamEye分析器查看
 
-![H.264 文件分析序列](live-stream/h264.png)
+<center><img src="live-stream/h264.png" width="70%"></center>
+
+<center>H.264 文件分析序列</center>
 
 柱状图中蓝色表示 P 帧，红色表示 I 帧，序列中 没有 B 帧。横轴表示时间，纵轴表示该帧大小。I 帧约每 5 秒出现一次，与设置参数吻合。
 
 #### 4.1.2 AAC文件分析
 
-![AAC文件分析结果](live-stream/aac.png)
+<center><img src="live-stream/aac.png" width="70%"></center>
+
+<center>AAC文件分析结果</center>
 
 从解析结果来看 AAC 帧内包含了采样率、 声道设置和持续时间等信息。
 
 #### 4.1.3 ts文件分析
 在C语言层中，修改FFmpeg模块，把向UDP地址发送的ts包以文件形式保存在手机SD卡内。用TS文件分析工具打开。
 
-![TS文件分析序列](live-stream/ts.png)
+<center><img src="live-stream/ts.png" width="60%"></center>
+
+<center>TS文件分析序列</center>
 
 ### 4.2 音视频流测试
 音视频流测试对JNI层中的队列数据进行动态分析。首先开启采集编码，等JNI层队列填充到一定长度后开始混流发送。主要考察推入队列中数据的大小和数据长度。
@@ -328,13 +382,17 @@ FFmpeg 混流发送模块初始化时要读取较多数据用于分析格式等�
 
 横轴表示当前音频帧序号，纵轴表示当前音频帧的大小。音频包大小变化不大，基本稳定在 375 字节左右。
 
-![每个音频帧大小的变化趋势图](live-stream/aacframe.png)
+<center><img src="live-stream/aacframe.png" width="50%"></center>
+
+<center>每个音频帧大小的变化趋势图</center>
 
 * 视频帧大小变化分析
 
 横轴表示视频帧序号，纵轴表示编码每一帧视频的大小。
 
-![视频帧大小变化曲线图](live-stream/h264frame.png)
+<center><img src="live-stream/h264frame.png" width="50%"></center>
+
+<center>视频帧大小变化曲线图</center>
 
 视频帧大小变化有明显的突跳过程，这些比较大的视频帧即I帧，其他比较小的视频帧是P帧，这个结果与前述分析结果吻合。
 
@@ -342,16 +400,22 @@ FFmpeg 混流发送模块初始化时要读取较多数据用于分析格式等�
 Java层编码模块和FFmpeg混流模块的数据传递是通过一个C++标准库的queue实现的。本部分分析此队列在混流开始前后长度的变化情况。由于队列内元素为无符号8位整型，占用空间为1字节，所以队列长度(元素个数)与队列大小相同。
 
 * 音频队列长度变化
+
 横轴表示音频帧序号，纵轴表示音频队列总长度。
 
-![音频队列长度变化图](live-stream/aacqueue.png)
+<center><img src="live-stream/aacqueue.png" width="50%"></center>
+
+<center>音频队列长度变化图</center>
 
 首先在 FFmpeg 混流发送模块未开启前，队列长度一直在增长。当FFmpeg 模块开始初始化时，队列元素急剧减少。之后，因为 FFmpeg 在处理或发送初始化 时读入的数据，还不需要从队列当中读入数据，所以队列长度发生小幅提升。接下来的一个锯齿形表示FFmpeg完成初始化，从队列中读取数据进行处理。由于FFmpeg模块初始化结束，所以舍弃队首部分的元素，体现为接着的一段下降端。之后，队列元素将稳定在一个区间内进行浮动
 
 * 视频队列长度变化
+
 横轴表示视频帧序号，纵轴表示视频队列的总长度。
 
-![视频队列长度变化图](live-stream/h264queue.png)
+<center><img src="live-stream/h264queue.png" width="50%"></center>
+
+<center>视频队列长度变化图</center>
 
 在 Fmpeg模块还未开始工作时，视频队列长度一直在增长。当FFmpeg进行初始化时，队列内元素急剧减少。随后队列长度的上升表示FFmpeg在处理初始化时读入的数据，不需要从队列内读入数据。当初始化结束后，视频队列队首元素将被舍弃，所以队列长度下降。由于通过比较时间戳，首先发送的数据包是音频数据，所以第二个峰出没有锯齿形状。随后视频队列先稳定上升一段时间后达到稳定状态。稳定上升的部分表示此时发送的数据都是音频数据，所以没用从视频队列内读取数据。
 
@@ -359,12 +423,18 @@ Java层编码模块和FFmpeg混流模块的数据传递是通过一个C++标准�
 
 输入栏分别输入接收端的 IP 地址和端口号。下面有两个按钮，Start recording按钮按下后将完成音视频的采集和编码，并把编码后的数据通过JNI层传递到FFmpeg中的队列中。Start Stream 按钮用于开启 FFmpeg的混流和发送模块，按下后，FFmpeg将从队列中读取数据，进行混流和发送。
 
-![直播 App 界面](live-stream/live.png)
+<center><img src="live-stream/live.png" width="40%"></center>
+
+<center>直播 App 界面</center>
 
 实际直播画面如图所示，图中手机对着电脑屏幕上的时钟进行拍摄，最上方的画面是VLC播放器，播放地址为udp://@:6666。发送端是手机，接收端是电脑上的 VLC。接收端和发送端通过连接一个Wifi热点完成通信。直播刚刚开始时，FFmpeg模块发送的数据是初始化时一次读入的，没有继续从队列中读取数据，所以延时较大，约6秒。
 
-![直播实际画面(舍弃队列元素前)](live-stream/livebef.png)
+<center><img src="live-stream/livebef.png" width="60%"></center>
 
-![直播实际画面(舍弃队列元素后)](live-stream/liveaft.png)
+<center>直播实际画面(舍弃队列元素前)</center>
+
+<center><img src="live-stream/liveaft.png" width="60%"></center>
+
+<center>直播实际画面(舍弃队列元素后)</center>
 
 当FFmpeg模块初始化完成后，队列中队首部分元素将被舍弃，接收端视频将向前突跳约3秒，延时降低至3秒。画面清晰，几乎没有卡顿。
