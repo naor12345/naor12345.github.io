@@ -1,0 +1,3 @@
+[submodule "themes/archer"]
+	path = themes/archer
+	url = https://github.com/naor12345/hexo-theme-archer.git
