@@ -1,11 +1,10 @@
 ---
-title: live-stream
+title: 基于Android和FFMpeg的移动视频直播端
 date: 2018-03-02 15:32:16
 categories: "视频直播"
 tags:
     - "直播"
     - "Android"
-mathjax: true
 ---
 
 本文记录本科的毕业设计。实现了一个基于Android和FFMpeg的移动视频直播端。完成的主要工作有：

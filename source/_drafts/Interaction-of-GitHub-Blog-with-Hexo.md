@@ -53,3 +53,7 @@ tags:
 $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 
 行内公式：\\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\\)
+
+npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-kramed --save
+首页显示的位置只能放文字，不要放代码

@@ -6,7 +6,7 @@
     "version": "3.7.1"
   },
   "dependencies": {
-    "hexo": "^3.3.9",
+    "hexo": "^3.7.1",
     "hexo-asset-image": "0.0.3",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.4",
@@ -16,9 +16,11 @@
     "hexo-generator-tag": "^0.2.0",
     "hexo-renderer-ejs": "^0.3.0",
     "hexo-renderer-kramed": "^0.1.4",
+    "hexo-renderer-mathjax": "^0.6.0",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.3.2",
     "hexo-wordcount": "^3.0.2",
+    "install": "^0.12.1",
     "standard": "^11.0.1"
   }
 }
