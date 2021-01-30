@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>naor's Studio - r23</title><meta name="author" content="Geralt Tong"><meta name="copyright" content="Geralt Tong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="ddd">
+<meta property="og:type" content="website">
+<meta property="og:title" content="naor&#39;s Studio">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="naor&#39;s Studio">
+<meta property="og:description" content="ddd">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/null">
+<meta property="article:author" content="Geralt Tong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-30 15:57:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">naor's Studio</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">naor's Studio</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2018/07/26/random_generator/" title="一个可以复现已产生结果的伪随机数生成器">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一个可以复现已产生结果的伪随机数生成器"></a></div><div class="recent-post-info"><a class="article-title" href="/2018/07/26/random_generator/" title="一个可以复现已产生结果的伪随机数生成器">一个可以复现已产生结果的伪随机数生成器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-07-26T07:32:16.000Z" title="发表于 2018-07-26 15:32:16">2018-07-26</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/">项目经历</a></span></div><div class="content">由于业务需求，需要实现一个带有记忆功能的随机数生成器，即在生成模式，可以产生大量随机数；在复现模式，可以在已经产生的随机数中随机输出一个。其基本原理是在基于线性同余法的伪随机数生成器上，实现了一个复现的功能。
+伪随机数生成器一个很经典的伪随机数生成算法是线性同余法。其本质是一个数列的递推方程。
+
+N_{i+1} \equiv a \cdot N_i + b (\mod m)  \tag{1}
+\\ N_0 = {\rm seed}用合理的数给$a$和$b$赋值，并给定其初始值$N_0$，就可以通过递推产生随机数。其中随机数初始值就是随机数种子。C++的rand()函数就是这样实现的，此函数可以抽象成12345678910inline void fast_srand( int seed )&#123;    g_seed = seed;&#125;inline int fastrand()&#123;    g_seed = (214013*g_seed+2531011);    return (g_seed&gt;&gt;16)&amp;0x7FFF;&#125;其中$a=214013 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2018/03/02/live-stream/" title="基于Android和FFMpeg的移动视频直播端">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Android和FFMpeg的移动视频直播端"></a></div><div class="recent-post-info"><a class="article-title" href="/2018/03/02/live-stream/" title="基于Android和FFMpeg的移动视频直播端">基于Android和FFMpeg的移动视频直播端</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-03-02T07:32:16.000Z" title="发表于 2018-03-02 15:32:16">2018-03-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/">视频直播</a></span></div><div class="content">本文记录本科的毕业设计。实现了一个基于Android和FFMpeg的移动视频直播端。完成的主要工作有：
+
+实现了基于Android的采集和编码，基于FFMpeg的混流和发送
+利用Android NDK，完成Android平台上FFmpeg库的编译与移植
+
+
+1. 相关平台和关键技术1.1 Android系统架构1.1.1 系统层次Android 系统是自由及开放源代码的操作系统，基于 Linux 内核开发完成，主要用于移动设备，如智能手机和平板电脑。Android 系统的层次图如图 2-1 所示，其软件层次结构自上而下分为5层。包括应用程序层、应用程序框架层、核心类库层、硬件抽象层和Linux底层。
+
+
+Android系统层次
+
+应用程序和应用程序框架是 Java 语言开发的程序，核心类库是 C/C++语言开发的函数库，硬件抽象层和Linux内核是与硬件相关底层模块。由于Android系统是基于Linux改装而成，所以其具备 Linux的一些系统特性和功能。Android支持通过C语言访问系统底层的驱动和接口，这也为硬件编码提供了框架前提。Android SDK使用Java语言进行开发 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2017/10/03/Structuralization-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（二）">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitHub + Hexo 博客搭建（二）"></a></div><div class="recent-post-info"><a class="article-title" href="/2017/10/03/Structuralization-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（二）">GitHub + Hexo 博客搭建（二）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-10-03T06:08:21.000Z" title="发表于 2017-10-03 14:08:21">2017-10-03</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Hexo%E6%95%99%E7%A8%8B/">Hexo教程</a></span></div><div class="content">1. 前言在上一篇文章GitHub + Hexo 博客搭建（一）中已经讲解了如何对GitHub + Hexo博客的初始化建立，这片文章将介绍一些博客完善与优化的方法。
+
+2. Hexo主题设置Hexo博客框架目前已经衍生出很多主题和插件，可以任意进行修改更换。也可以直接对框架中的.css文件进行修改来更改样式。初始化网站使用的默认主题是landscape。如果对默认主题不满意，可以下载hexo主题进行更换。本文以更换NexT主题为例进行说明。
+Hexo中有两份主要的配置文件，文件名都是_config.yml，其中一份位于博客根目录下，包含博客站点本身的配置；另一份位于主题目录下(/themes/&lt;theme_name&gt;/)，由主题作者提供，用于配置主题香瓜你的选项。为了描述方便，在以下说明中，前者称为站点配置文件，后者称为主题配置文件。
+2.1 下载新主题确保在hexo分支上，命令行到博客目录，使用git命令：1$ git clone https://github.com/iissnan/hexo-theme-next themes/next操作完成后，将看到新目录/the ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2017/10/02/Establishment-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（一）">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitHub + Hexo 博客搭建（一）"></a></div><div class="recent-post-info"><a class="article-title" href="/2017/10/02/Establishment-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（一）">GitHub + Hexo 博客搭建（一）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2017-10-02T15:14:51.000Z" title="发表于 2017-10-02 23:14:51">2017-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Hexo%E6%95%99%E7%A8%8B/">Hexo教程</a></span></div><div class="content">1. 前言本文介绍如何用Hexo框架在GitHub上搭建个人独立博客，以及后期的维护和优化工作，包括来自GitHub Pages + Hexo搭建博客的部分内容和自己踩到的一些坑。GitHub提供了一个用于建立个人页面的托管空间，而Hexo是一个简介快速的博客框架。博客建立的主要思路是，用Markdown语言进行写作，得到.md文件；然后用Hexo框架把.md文件编译成浏览器可以识别的.html、.js、.css等文件；最后通过Hexo发布到指定的GitHub页面托管库中。本文以macOS为操作系统，一些命令可能与Windows有所不同。预备知识：
+
+GitHub
+Hexo
+Markdown语言
+
+2. GitHub配置2.1 建立GitHub Pages仓库注册并登陆GitHub账户，建立新仓库，命名为 username.github.io（username是GitHub账户名）。勾选”Initialize this repository with a README”选项，gitignore和license可以先不用管。
+仓库建立后，转到仓库的Settings页面，在GitHub P ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Geralt Tong</div><div class="author-info__description">ddd</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2018/07/26/random_generator/" title="一个可以复现已产生结果的伪随机数生成器"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一个可以复现已产生结果的伪随机数生成器"/></a><div class="content"><a class="title" href="/2018/07/26/random_generator/" title="一个可以复现已产生结果的伪随机数生成器">一个可以复现已产生结果的伪随机数生成器</a><time datetime="2018-07-26T07:32:16.000Z" title="发表于 2018-07-26 15:32:16">2018-07-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2018/03/02/live-stream/" title="基于Android和FFMpeg的移动视频直播端"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Android和FFMpeg的移动视频直播端"/></a><div class="content"><a class="title" href="/2018/03/02/live-stream/" title="基于Android和FFMpeg的移动视频直播端">基于Android和FFMpeg的移动视频直播端</a><time datetime="2018-03-02T07:32:16.000Z" title="发表于 2018-03-02 15:32:16">2018-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/10/03/Structuralization-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（二）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitHub + Hexo 博客搭建（二）"/></a><div class="content"><a class="title" href="/2017/10/03/Structuralization-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（二）">GitHub + Hexo 博客搭建（二）</a><time datetime="2017-10-03T06:08:21.000Z" title="发表于 2017-10-03 14:08:21">2017-10-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2017/10/02/Establishment-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（一）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitHub + Hexo 博客搭建（一）"/></a><div class="content"><a class="title" href="/2017/10/02/Establishment-of-GitHub-Blog-with-Hexo/" title="GitHub + Hexo 博客搭建（一）">GitHub + Hexo 博客搭建（一）</a><time datetime="2017-10-02T15:14:51.000Z" title="发表于 2017-10-02 23:14:51">2017-10-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Hexo%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">Hexo教程</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/"><span class="card-category-list-name">视频直播</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/"><span class="card-category-list-name">项目经历</span><span class="card-category-list-count">1</span></a></li>
+            
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.1em; color: #999">Android</a> <a href="/tags/Hexo/" style="font-size: 1.5em; color: #99a9bf">Hexo</a> <a href="/tags/%E7%9B%B4%E6%92%AD/" style="font-size: 1.1em; color: #999">直播</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 1.1em; color: #999">随机数</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/07/"><span class="card-archive-list-date">七月 2018</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/03/"><span class="card-archive-list-date">三月 2018</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2017/10/"><span class="card-archive-list-date">十月 2017</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">4</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-01-30T07:57:21.217Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Geralt Tong</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
