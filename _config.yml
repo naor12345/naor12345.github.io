@@ -9,10 +9,11 @@ description:
 author: Geralt Tong
 language: zh-CN
 timezone: Asia/Shanghai
+email: 12345@a.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://naor12345.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
