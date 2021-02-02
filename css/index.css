@@ -2486,9 +2486,9 @@ blockquote footer cite:before {
   box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15);
 }
 #aside-content .card-info img {
-  width: 110px;
-  height: 110px;
-  border-radius: 70px;
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
