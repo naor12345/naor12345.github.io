@@ -8,7 +8,19 @@ from PyQt5.QtCore import Qt
 
 
 class MyGraphicsView(QtWidgets.QGraphicsView):
-	pass
+	def wheelEvent(self, event):
+		'''
+		以鼠标所在位置为锚点，通过滚轮缩放
+		'''
+		anchor = self.transformationAnchor()
+		self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
+		angle = event.angleDelta().y()
+		if angle > 0:
+			factor = 1.1
+		else:
+			factor = 0.9
+		self.scale(factor, factor)
+		self.setTransformationAnchor(anchor)
 
 
 class MainWindows(QtWidgets.QMainWindow):
@@ -16,27 +28,18 @@ class MainWindows(QtWidgets.QMainWindow):
 		super(MainWindows, self).__init__()
 		self.resize(800, 600)
 		central_widget = QtWidgets.QWidget(self)
-		
 		vertical_layout = QtWidgets.QVBoxLayout(central_widget)
 		self.graphics_view = MyGraphicsView()
-		self.line_edit = QtWidgets.QLineEdit()
-		self.show_pic_button = QtWidgets.QPushButton()
 		vertical_layout.addWidget(self.graphics_view)
-		vertical_layout.addWidget(self.line_edit)
-		vertical_layout.addWidget(self.show_pic_button)
 		central_widget.setLayout(vertical_layout)
-		# 如果手写界面（不用qt designer），需要注意
-		# 对于QMainWindow，需要造一个central_widget再调用setCentralWidget
-		# 否则任何界面不会显示
 		self.setCentralWidget(central_widget)
 		
 		# 查看图片配置
 		self.graphics_scene = QtWidgets.QGraphicsScene()
 		self.graphics_view.setDragMode(QtWidgets.QGraphicsView.DragMode.ScrollHandDrag)
 		self.graphics_view.setScene(self.graphics_scene)
-		
-		# 按钮查看
-		self.show_pic_button.clicked.connect(lambda: self.show_pic(self.line_edit.text(), "not found"))
+		# 显示图片
+		self.show_pic(r'F:\H74\Trunk\Program\ClientWrapper\Client\Package\Repository\char_gh.local\Texture\03\{0337d571-592d-433b-b998-359675092870}\source.tga', "not found")
 
 	def show_pic(self, tga_path, error_text):
 		if os.path.isfile(tga_path):
@@ -47,9 +50,12 @@ class MainWindows(QtWidgets.QMainWindow):
 			pixmap = QtGui.QPixmap.fromImage(qim)
 			pixmap_image = QtGui.QPixmap(pixmap)
 			graphics_pixmap = QtWidgets.QGraphicsPixmapItem(pixmap_image)
+			
+			# 反锯齿
+			graphics_pixmap.setTransformationMode(Qt.SmoothTransformation)
+			
 			self.graphics_scene.clear()
 			self.graphics_scene.addItem(graphics_pixmap)
-			# print(graphics_pixmap.boundingRect().size())
 			self.graphics_view.fitInView(graphics_pixmap.boundingRect(), Qt.KeepAspectRatio)
 			self.graphics_view.setViewportMargins(-2, -2, -2, -2)
 			self.graphics_view.setFrameStyle(QtWidgets.QFrame.NoFrame)
