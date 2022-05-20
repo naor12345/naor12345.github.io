@@ -52,7 +52,7 @@ class MainWindows(QtWidgets.QMainWindow):
 			graphics_pixmap = QtWidgets.QGraphicsPixmapItem(pixmap_image)
 			
 			# 反锯齿
-			graphics_pixmap.setTransformationMode(Qt.SmoothTransformation)
+			# graphics_pixmap.setTransformationMode(Qt.SmoothTransformation)
 			
 			self.graphics_scene.clear()
 			self.graphics_scene.addItem(graphics_pixmap)

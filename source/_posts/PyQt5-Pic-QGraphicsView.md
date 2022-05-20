@@ -27,6 +27,11 @@ pixmap = QPixmap.fromImage(qim)
 pixmap_image = QPixmap(pixmap)
 # 转换成QGraphicsPixmapItem
 graphics_pixmap = QGraphicsPixmapItem(pixmap_image)
+# 设定缩放模式，根据文档
+# - FastTransformation是最简单的模式
+# - SmoothTransformation会应用双线性滤波（bilinear filtering），有反锯齿的效果
+graphics_pixmap.setTransformationMode(Qt.SmoothTransformation)
+
 graphics_scene.clear()
 graphics_scene.addItem(graphics_pixmap)
 graphics_view.fitInView(graphics_pixmap.boundingRect(), Qt.KeepAspectRatio)
@@ -55,12 +60,18 @@ class MyGraphicsView(QtWidgets.QGraphicsView):
 ```
 
 如果用qt designer，右击QGraphicsView，选择`提升为...`。
-![](/image/promoted.png)
+![](promoted.png)
 然后选择基类`QGraphicsView`，提升的类名和头文件。对于pyqt，头文件对应规则是`from <头文件路径（斜杠替换为点）> import <类名>`，比如图里的类相当于`from views.my_widgets import MyGraphicsView`。
-![](/image/promoted_class.png)
+![](promoted_class.png)
 
-## 抗锯齿功能
-pass
+## TransformationMode
+QGraphicsPixmapItem可通过setTransformationMode设定缩放模式，主要区别是图像放大后是否开启反锯齿，根据应用场景设定。
+
+![](anti-aliasing.png)
+<center>SmoothTransformation，反锯齿效果</center>
+
+![](no-anti-aliasing.png)
+<center>FastTransformation，未开启反锯齿。可看清每个像素的实际颜色</center>
 
 
 ## 完整代码
@@ -105,7 +116,7 @@ class MainWindows(QtWidgets.QMainWindow):
         self.graphics_view.setDragMode(QtWidgets.QGraphicsView.DragMode.ScrollHandDrag)
         self.graphics_view.setScene(self.graphics_scene)
         # 显示图片
-        self.show_pic(r'F:\H74\Trunk\Program\ClientWrapper\Client\Package\Repository\char_gh.local\Texture\03\{0337d571-592d-433b-b998-359675092870}\source.tga', "not found")
+        self.show_pic(r'F:\source.tga', "not found")
 
     def show_pic(self, tga_path, error_text):
         if os.path.isfile(tga_path):
@@ -118,7 +129,7 @@ class MainWindows(QtWidgets.QMainWindow):
             graphics_pixmap = QtWidgets.QGraphicsPixmapItem(pixmap_image)
             
             # 反锯齿
-            graphics_pixmap.setTransformationMode(Qt.SmoothTransformation)
+            # graphics_pixmap.setTransformationMode(Qt.SmoothTransformation)
             
             self.graphics_scene.clear()
             self.graphics_scene.addItem(graphics_pixmap)
