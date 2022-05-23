@@ -41,6 +41,4 @@ notification.icon = "path/to/icon.png"
 notification.send()
 ```
 
-https://stackoverflow.com/questions/6783194/background-thread-with-qthread-in-pyqt
-
 https://schedule.readthedocs.io/en/stable/
