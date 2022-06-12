@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>命令行输出重定向 | naor's Studio</title><meta name="keywords" content="Shell"><meta name="author" content="Geralt Tong,12345@a.com"><meta name="copyright" content="Geralt Tong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍命令行输出重定向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令行输出重定向">
+<meta property="og:url" content="https://naor12345.github.io/2022/05/16/Cmd-Redirect/index.html">
+<meta property="og:site_name" content="naor&#39;s Studio">
+<meta property="og:description" content="介绍命令行输出重定向">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://naor12345.github.io/img/default_cover.jpg">
+<meta property="article:published_time" content="2022-05-16T02:39:17.000Z">
+<meta property="article:modified_time" content="2022-05-19T14:18:31.196Z">
+<meta property="article:author" content="Geralt Tong">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://naor12345.github.io/img/default_cover.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://naor12345.github.io/2022/05/16/Cmd-Redirect/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '命令行输出重定向',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-05-19 22:18:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_cover.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">naor's Studio</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">命令行输出重定向</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-16T02:39:17.000Z" title="发表于 2022-05-16 10:39:17">2022-05-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-19T14:18:31.196Z" title="更新于 2022-05-19 22:18:31">2022-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Shell/">Shell</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">464</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>三个流，stdin，stdout，stderr，在命令行里对应编号0、1、2。</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cmd &gt; file.txt    <span class="comment"># stdout重定向，新建文件</span></span><br><span class="line">cmd &gt;&gt; file.txt   <span class="comment"># stdout重定向，附加到已有文件结尾</span></span><br><span class="line">cmd &amp;&gt; file.txt   <span class="comment"># stdout和stderr都重定向，此用法不是标准实现，只是某些shell的特殊实现</span></span><br><span class="line">cmd &amp;&gt;&gt; file.txt  <span class="comment"># 没有这种写法</span></span><br></pre></td></tr></table></figure><br><strong>例：</strong><code>cmd &gt;&gt;file.txt 2&gt;&amp;1</code><br>Bash executes the redirects from left to right as follows:</p>
+<ul>
+<li><code>&gt;&gt;file.txt</code>: Open file.txt in append mode and redirect stdout there.</li>
+<li><code>2&gt;&amp;1</code>: Redirect stderr to “where stdout is currently going”. In this case, that is a file opened in append mode. In other words, the &amp;1 reuses the file descriptor which stdout currently uses. 此处的&amp;符号用于表示文件描述符，&amp;1表示输出到stdout输出的位置上。</li>
+</ul>
+<p><strong>也可以用编号直接拆分输出</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmd &gt;log.out 2&gt;log_error.out   <span class="comment"># 新建</span></span><br><span class="line">cmd &gt;&gt;log.out 2&gt;&gt;log_error.out <span class="comment"># 追加</span></span><br><span class="line">You_command 1&gt;output.log  2&gt;&amp;1 <span class="comment"># 更明确的区分</span></span><br></pre></td></tr></table></figure><br><code>Usage: &lt;file_descriptor&gt; &gt; &lt;filename | &amp;file_descriptor&gt;</code><br><code>your_command 2&gt;&amp;1 | tee -a file.txt</code><br>It will store all logs in file.txt as well as dump them on terminal.此处|符号表示管道符号（pipe symbol），表示前者命令的stdout作为后者的输入</p>
+<p><strong>互换重定向</strong><br><code>command 3&gt;&amp;1 1&gt;&amp;2 2&gt;&amp;3</code><br>This creates a new file descriptor (3) and assigns it to the same place as 1 (standard output), then assigns fd 1 (standard output) to the same place as fd 2 (standard error) and finally assigns fd 2 (standard error) to the same place as fd 3 (standard output).<br>Standard error is now available as standard output and the old standard output is preserved in standard error. This may be overkill, but it hopefully gives more details on Bash file descriptors (there are nine available to each process).<br>A final tweak would be 3&gt;&amp;- to close the spare descriptor that you created from stdout. 这个方法的前提是3号描述符不能已经被使用。</p>
+<p><strong>python中，可以这样：</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = Popen(cmd, stdout=pipe, stderr=pipe)</span><br><span class="line">stdout, stderr = a.communicate()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> stdout:</span><br><span class="line">    <span class="built_in">print</span> line</span><br><span class="line">    write_file(line)</span><br></pre></td></tr></table></figure></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Shell/">Shell</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/13/2021-02-13-git-01/"><img class="prev-cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">gitignore for VisualStudio</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/17/PyQt5-Pic-QGraphicsView/"><img class="next-cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PyQt5使用QGraphicsView显示TGA图片</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Geralt Tong</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/23/pyqt-thread-example/" title="PyQt5多线程Example"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyQt5多线程Example"/></a><div class="content"><a class="title" href="/2022/05/23/pyqt-thread-example/" title="PyQt5多线程Example">PyQt5多线程Example</a><time datetime="2022-05-23T14:35:42.000Z" title="发表于 2022-05-23 22:35:42">2022-05-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/23/pyqt_notification/" title="PyQt5发送系统通知"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyQt5发送系统通知"/></a><div class="content"><a class="title" href="/2022/05/23/pyqt_notification/" title="PyQt5发送系统通知">PyQt5发送系统通知</a><time datetime="2022-05-23T03:12:57.000Z" title="发表于 2022-05-23 11:12:57">2022-05-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/pyqt_helloworld/" title="PyQt5构建基础界面"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyQt5构建基础界面"/></a><div class="content"><a class="title" href="/2022/05/17/pyqt_helloworld/" title="PyQt5构建基础界面">PyQt5构建基础界面</a><time datetime="2022-05-17T01:29:15.000Z" title="发表于 2022-05-17 09:29:15">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/PyQt5-Pic-QGraphicsView/" title="PyQt5使用QGraphicsView显示TGA图片"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PyQt5使用QGraphicsView显示TGA图片"/></a><div class="content"><a class="title" href="/2022/05/17/PyQt5-Pic-QGraphicsView/" title="PyQt5使用QGraphicsView显示TGA图片">PyQt5使用QGraphicsView显示TGA图片</a><time datetime="2022-05-17T01:29:15.000Z" title="发表于 2022-05-17 09:29:15">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/16/Cmd-Redirect/" title="命令行输出重定向"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="命令行输出重定向"/></a><div class="content"><a class="title" href="/2022/05/16/Cmd-Redirect/" title="命令行输出重定向">命令行输出重定向</a><time datetime="2022-05-16T02:39:17.000Z" title="发表于 2022-05-16 10:39:17">2022-05-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/default_cover.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Geralt Tong</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>function loadDisqusjs () {
+  function addDisqusjsCSS () {
+    const ele = document.createElement('link')
+    ele.rel = 'stylesheet'
+    ele.href= 'https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css'
+    document.getElementsByTagName('head')[0].appendChild(ele)
+  }
+
+  function initDisqusjs () {
+    window.DISQUS = null
+    new DisqusJS(Object.assign({
+      shortname: 'naor-studio',
+      identifier: '2022/05/16/Cmd-Redirect/',
+      url: 'https://naor12345.github.io/2022/05/16/Cmd-Redirect/',
+      title: '命令行输出重定向',
+      apikey: 'ICw1q1Cx0P7F1ouOofqc59pqx0r3xcYZTs7LuKGgrd3iI5m8K2l98a5N5ecNM08C',
+    },null))
+  }
+
+
+  window.disqusReset = initDisqusjs
+
+  if (window.disqusJsLoad) initDisqusjs()
+  else {
+    addDisqusjsCSS()
+    getScript('https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js').then(initDisqusjs)
+    window.disqusJsLoad = true
+  }
+}
+
+if ('Disqusjs' === 'Disqusjs' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqusjs)
+  else loadDisqusjs()
+}
+else {
+  function loadOtherComment () {
+    loadDisqusjs()
+  }
+}
+
+</script></div></div></body></html>
