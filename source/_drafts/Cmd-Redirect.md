@@ -15,7 +15,7 @@ cmd >> file.txt   # stdout重定向，附加到已有文件结尾
 cmd &> file.txt   # stdout和stderr都重定向，此用法不是标准实现，只是某些shell的特殊实现
 cmd &>> file.txt  # 没有这种写法
 ```
-
+<!-- more -->
 **例：**`cmd >>file.txt 2>&1 `
 Bash executes the redirects from left to right as follows:
 - `>>file.txt`: Open file.txt in append mode and redirect stdout there.

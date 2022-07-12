@@ -6,6 +6,10 @@ tags:
     - "PyQt5"
 ---
 
+**Python发送系统通知**
+
+<!-- more -->
+
 ```python
 # 只适用于win10
 from win10toast import ToastNotifier

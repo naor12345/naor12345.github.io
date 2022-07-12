@@ -12,7 +12,7 @@ tags:
 正规做法，需要配置pycharm、qt designer、pyuic的环境。qt designer生成ui文件，通过pyuic转换成py文件。对于界面简单的小工具，可以直接coding界面。
 
 Qt的主窗体继承自`QtWidgets.QMainWindow`类。该类需要设定一个central_widget（`self.setCentralWidget(central_widget)`），各layout和widget需要放到该central_widget里面。
-
+<!-- more -->
 代码如下：
 
 ```python

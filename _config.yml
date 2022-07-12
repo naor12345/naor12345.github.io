@@ -3,11 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: naor's Studio
+title: NKP377 Studio
 subtitle:
 description:
 author: Geralt Tong
-language: zh-CN
+language:
+ - en
+ - zh-cn
 timezone: Asia/Shanghai
 email: 12345@a.com
 
@@ -15,7 +17,7 @@ email: 12345@a.com
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://naor12345.github.io/
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
@@ -74,7 +76,8 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: archer
-theme: butterfly
+# theme: butterfly
+theme: minos
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

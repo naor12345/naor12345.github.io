@@ -9,7 +9,7 @@ tags:
 
 **一般地，不会在UI主线程里处理耗时逻辑。需要另外开一个线程。**
 示例代码摘自 https://stackoverflow.com/questions/6783194/background-thread-with-qthread-in-pyqt
-
+<!-- more -->
 ```python
 # worker.py
 from PyQt5.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
